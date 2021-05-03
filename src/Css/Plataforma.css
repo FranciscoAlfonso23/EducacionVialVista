@@ -1,0 +1,175 @@
+.img-fluid {
+    height: 100px;
+}
+
+
+.p-container{
+    background: rgb(0, 0, 0);
+    opacity:0.8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 400px; 
+    position: relative;
+    border-radius: 20px;      
+}
+
+.titulo{
+    margin-top: -30px;
+    font-size: 30px;
+    color: white; 
+}
+
+
+.btn{
+    border: 1px solid var(--primary);
+    padding: 8px 20px;    
+    margin-top: 40px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.btn:hover{
+    background-color:#020202fd;
+    color: #ffffff;
+    transition: all 0.3s ease-out;
+    border: 1px solid var(--primary);
+}
+
+.combo{
+    margin-top: 60px;
+    max-width: 450px;
+    position: relative;
+    border-radius: 5px;
+    bottom: 20px;
+    font-size: 20px;
+}
+
+.input:hover {
+    border: 2px ;
+    border-radius: 5px;
+    border-bottom: 3px solid #fff  ;
+}
+
+.p-container input{
+    width: 60%;
+    height: 30px;
+    background: none;
+    color:#fff;
+    border-radius: 4px;
+    margin: 10px; 
+    font-size: 20px;
+}
+
+
+@media screen and (max-width: 64em) {
+    .p-container {
+        width: 300px;
+      }
+
+      .titulo{
+          font-size: 20px;
+      }
+
+      .btn{
+          width: 120px;
+      }
+
+     
+    }
+    
+    .imModal{
+        width: 400px;        
+    }
+
+
+    .car{
+        width: 20rem;
+        background-color: #6586f1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 2rem 0;
+        box-shadow: .5rem .5rem 3rem rgba(0, 0, 0, 05);
+        color: black;
+    }
+    
+    .car .ca{
+        padding-top: 2rem;
+        width: 10rem;
+        height: 10rem;
+    
+    }
+    
+    .about-text{
+        font-size: 1rem;
+    }
+    
+    
+    .input-file{
+        overflow: hidden;
+        position: relative;
+        height: 0;
+        padding-bottom: 50%;
+    }
+    
+    .contenedor{
+        text-align: center;
+        display: block;
+    }
+    
+.input-file [type=file]{
+        cursor: pointer;
+        display:block;
+        font-size: 999px;
+        filter:alpha(opacity=0);
+        min-height: 100%;
+        min-width: 50%;
+        opacity: 0;
+        position: absolute;
+        top:0;
+    }
+    
+    .name-picture{
+        width: 80%;
+    }
+    
+    .image{
+        width:50;
+        height: 50;
+    }
+    
+    .fila{
+        justify-content: center; 
+    }
+    
+.subir{
+        margin-top: 0%;  
+        text-align: center;
+    }
+    
+    .col{
+        margin-top: 1px;
+    }
+
+.c{
+    text-align: center;
+    justify-content: center; 
+}
+
+.ca{
+    width: 18%; /* 100/nºimágenes, 5 en el ejemplo */
+margin:1px;
+border: 3px solid black;
+opacity: 1;
+}
+
+.btn{
+   margin-top:0%;
+}
+
+.rejilla {
+    grid-template-columns: 300px 400px;
+  }
