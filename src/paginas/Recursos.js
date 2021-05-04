@@ -74,4 +74,3 @@ function Recursos() {
 }
 
 export default Recursos;
-
