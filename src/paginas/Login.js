@@ -12,12 +12,6 @@ export default function Login() {
    
     const [usuario, setUsername] = useState("");
     const [contra, setPassword] = useState("");
-    const [Data, setData] = useState("")
-
-    const register = (e) => {
-        cookies.set('Nombre', "pp", { path: '/' });  
-        window.location.href="/Upload";  
-    };
 
     const loginUser = (e) => {
         e.preventDefault()
@@ -37,7 +31,6 @@ export default function Login() {
     useEffect(() => {    
         if(cookies.get('Nombre')){
             window.location.href="/Principal";
-            console.log(Data)
         }
      });
 

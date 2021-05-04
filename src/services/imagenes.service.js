@@ -7,7 +7,6 @@ class ImagenesDataService {
     form.append('name', name)
     form.append('descripcion', descripcion)
     form.append('file', file, 'form-data')
-
     return axios.post(`${API.URI}/upload`, form)
   }
 
@@ -28,6 +27,23 @@ class ImagenesDataService {
     return axios.post(`${API.URI}/UpDocument`, form)
   }
 
+  updateDocument(id,name,descripcion) {
+    const form = new FormData()
+    form.append('id', id)
+    form.append('name', name)
+    form.append('descripcion', descripcion)
+    return axios.post(`${API.URI}/UpdateDocument`, form)
+  }
+
+  updatePicture(id,name,descripcion) {
+    const form = new FormData()
+    form.append('id', id)
+    form.append('name', name)
+    form.append('descripcion', descripcion)
+    return axios.post(`${API.URI}/UpdatePicture`, form)
+  }
+
+
   sendContacto(Desarrollador, Email, Telefono,Direccion) {
     const form = new FormData()
     form.append('Desarrollador', Desarrollador)
@@ -38,8 +54,6 @@ class ImagenesDataService {
   }
 
   login(usuario,contra) {
-    console.log(usuario)
-    console.log(contra)
     const form = new FormData()
     form.append('usuario', usuario)
     form.append('contra', contra)

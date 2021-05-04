@@ -1,5 +1,6 @@
-import React, {useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css'
+import '../Css/galeria.css'
 //import Footer from '../componentes/Footer'
 import Cookies from 'universal-cookie';
 import UploadService from '../services/imagenes.service'
@@ -7,9 +8,9 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label } from 'react
 import Card from 'react-bootstrap/Card';
 
 
-const cookies= new Cookies();
+const cookies = new Cookies();
 
-function Recursos (){
+function Recursos() {
     const [Data, setData] = useState("")
     const [Estado, setEstado] = useState(false);
     const [nombre, setNombre] = useState("")
@@ -38,10 +39,10 @@ function Recursos (){
                         return (
                             <div className="inf col-3 colum">
                                 <Card style={{ width: '16rem' }}>
-                                    <Card.Img style={{ height: '17rem' }} variant="top" src={item.urlFile} />
+                                    <Card.Img style={{ height: '16rem' }} variant="top" src='./imagenes/pdf.svg' />
                                     <Card.Body>
                                         <Card.Text>
-
+                                            {item.fileName}
                                         </Card.Text>
                                         <Button variant="primary" key={item._id} onClick={() => { handleClick(item.urlFile, item.fileName, item.descripcion) }}>Conocer</Button>
                                     </Card.Body>
@@ -56,16 +57,11 @@ function Recursos (){
                     <ModalHeader>
                         <Label >Nombre: {nombre}</Label>
                     </ModalHeader>
-
                     <ModalBody>
-                        <div className="d-flex justify-content-center mb-2">
-                            <img className='imModal' src={ruta} alt='' />
+                        <div className='pdf'>
+                            <iframe title='Pdf' className='archivo' src={ruta}></iframe>
                         </div>
-                        <div class="row mb-3">
-                            <div className="justify-content-center mb-2">
-                                <Label >Descripcion: {descripcion}</Label>
-                            </div>
-                        </div >
+                        {descripcion}
                     </ModalBody>
                     <ModalFooter>
                         <Button color='primary' onClick={handleClick}>Cerrar</Button>

@@ -17,6 +17,7 @@ const cookies = new Cookies();
 
 
 export default function Plataforma() {
+    const [id, setid] = useState("")
     const [name, setName] = useState("")
     const [descripcion, setD] = useState("")
     const [file, setFile] = useState("")
@@ -26,9 +27,10 @@ export default function Plataforma() {
     const [ruta, setRuta] = useState("")
 
     const [Estado, setEstado] = useState(false);
+    const [Modal2, setModal2] = useState(false);
 
     const sendImage = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         UploadService.sendDocument(name, descripcion, file).then((result) => {
             console.log("el resultado es: ", result)
             UploadService.mostrarDocumentos().then((result) => {
@@ -36,15 +38,39 @@ export default function Plataforma() {
                 handleClick()
                 setPathImage("http://localhost:4000/upload.png")
             })
-
         })
     }
+
+    const sendDocument = (e) => {
+        e.preventDefault();
+        UploadService.updateDocument(id,name,descripcion).then((result) => {
+            UploadService.mostrarDocumentos().then((result) => {
+                setData(result.data)
+                Cerrar()
+            })
+        });
+
+    }
+
+
+    const update = (id, ruta, nombre, descripcion) => {
+        setModal2(!Modal2);
+        setid(id);
+        setName(nombre);
+        setRuta(ruta);
+        setD(descripcion);
+    }
+    
 
     const handleClick = () => {
         setEstado(!Estado);
     }
+    
+    const Cerrar=()=>{
+        setModal2(!Modal2);
+    }
 
-    const refrescar=() => {
+    const refrescar = () => {
         UploadService.mostrarDocumentos().then((result) => {
             setData(result.data)
         })
@@ -144,7 +170,7 @@ export default function Plataforma() {
                                                     <th  ><a href={item.urlFile}>Abrir el Archivo</a></th>
                                                     <th >
                                                         <div className='botones'>
-                                                            <button type="button" class="btn btn-success" >Editar</button>
+                                                            <button type="button" class="btn btn-success" onClick={() => { update(item._id,item.urlFile,item.fileName,item.descripcion) }} >Editar</button>
                                                             <button type="button" class="btn btn-danger" onClick={() => { eliminar(item._id) }} >Eliminar</button>
                                                         </div>
                                                     </th>
@@ -167,46 +193,93 @@ export default function Plataforma() {
 
                     <ModalBody>
                         <form className='subir' >
-                        <div class="container">
-                            <div className='row'>
-                                <div className='col-sm'>
-                                <div className='input-file'>
-                    <input
-                        type="file"
-                        accept="pdf/*"
-                        class="form-file"
-                        placeholder="file"
-                        onChange={onFileChange}
-                    />
-                    <img className="img-fluid img-thumbnail image" src={pathImage} alt="Im" />                    
-                    </div>
-                                </div>
-                                <div className='col-sm'>
-                                <div className='contenedor'>
-                    <input
-                        type="text"
-                        placeholder="Ingresa nombre"
-                        className="name-picture mt-2"
-                        onChange={(e) => setName(e.target.value)}
-                    />
+                            <div class="container">
+                                <div className='row'>
+                                    <div className='col-sm'>
+                                        <div className='input-file'>
+                                            <input
+                                                type="file"
+                                                accept="pdf/*"
+                                                class="form-file"
+                                                placeholder="file"
+                                                onChange={onFileChange}
+                                            />
+                                            <img className="img-fluid img-thumbnail image" src={pathImage} alt="Im" />
+                                        </div>
+                                    </div>
+                                    <div className='col-sm'>
+                                        <div className='contenedor'>
+                                            <input
+                                                type="text"
+                                                placeholder="Ingresa nombre"
+                                                className="name-picture mt-2"
+                                                value={name}
+                                                onChange={(e) => setName(e.target.value)}
+                                            />
 
-                    <input
-                        type="text"
-                        placeholder="Descripcion"
-                        className="name-picture mt-2"
-                        onChange={(e) => setD(e.target.value)}
-                    />
-                    </div>
+                                            <input
+                                                type="text"
+                                                placeholder="Descripcion"
+                                                className="name-picture mt-2"
+                                                value={descripcion}
+                                                onChange={(e) => setD(e.target.value)}
+                                            />
+                                        </div>
+                                    </div>
+
                                 </div>
 
                             </div>
-                                       
-                        </div>
-                        <button type="submit" className="btn btn-success" onClick={sendImage}>Guardar</button>
+                            <button type="submit" className="btn btn-success" onClick={sendImage}>Guardar</button>
                         </form>
                     </ModalBody>
                     <ModalFooter>
                         <Button color="secondary" onClick={handleClick}>Cerrar</Button>
+                    </ModalFooter>
+                </Modal>
+            </div>
+
+            <div className='agregar'>
+                <Modal isOpen={Modal2}>
+                    <ModalHeader>
+                        <Label >Editar Documento</Label>
+                    </ModalHeader>
+
+                    <ModalBody>
+                        <form className='subir' >
+                            <div class="container">
+                                <div className='row'>
+                                    <div className='col-sm'>
+                                
+                                        <iframe title='visor' className='archivo' src={ruta}>hola</iframe>
+                               
+                                    </div>
+                                    <div className='col-sm'>
+                                        <div className='contenedor'>
+                                            <input
+                                                type="text"
+                                                placeholder={name}
+                                                className="name-picture mt-2"
+                                                onChange={(e) => setName(e.target.value)}
+                                            />
+
+                                            <input
+                                                type="text"
+                                                placeholder={descripcion}
+                                                className="name-picture mt-2"
+                                                onChange={(e) => setD(e.target.value)}
+                                            />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <button type="submit" className="btn btn-success" onClick={sendDocument}>Actualizar</button>
+                        </form>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="secondary" onClick={Cerrar}>Cerrar</Button>
                     </ModalFooter>
                 </Modal>
             </div>
