@@ -14,7 +14,7 @@ function Footer() {
             <section className='social-media'>
         <div className='social-media-wrap'>
 
-          <small className='website-rights'>Universidad Tecnoloca de la huasteca Hidalguense © 2021</small>
+          <small className='website-rights'>Universidad Tecnoligica de la huasteca Hidalguense © 2021</small>
           <div className='social-icons'>
             <Link
               className='social-icon-link facebook'
