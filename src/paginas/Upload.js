@@ -20,7 +20,7 @@ export default function Plataforma() {
     const [name, setName] = useState("")
     const [descripcion, setD] = useState("")
     const [file, setFile] = useState("")
-    const [pathImage, setPathImage] = useState("https://eduvialserver.herokuapp.com/upload.png")
+    const [pathImage, setPathImage] = useState("http://localhost:4000/upload.png")
     const [Data, setData] = useState("")
     const [Estado, setEstado] = useState(false);
     const [Modal2, setModal2] = useState(false);
@@ -33,7 +33,7 @@ export default function Plataforma() {
             UploadService.mostrarImagenes().then((result) => {
                 setData(result.data)
                 handleClick()
-                setPathImage("https://eduvialserver.herokuapp.com/upload.png")
+                setPathImage("http://localhost:4000/upload.png")
             })
         })
     }
