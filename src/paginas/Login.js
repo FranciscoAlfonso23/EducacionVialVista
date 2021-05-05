@@ -26,8 +26,6 @@ export default function Login() {
      
         })
     }
-
-
     useEffect(() => {    
         if(cookies.get('Nombre')){
             window.location.href="/Principal";

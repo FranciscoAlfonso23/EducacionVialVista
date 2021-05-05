@@ -1,5 +1,5 @@
 var API={
-    URI:"http://localhost:4000"
+    URI:"https://eduvial-server.herokuapp.com"
   }
   
   export default API
